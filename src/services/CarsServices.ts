@@ -1,5 +1,9 @@
 import { prisma } from "../database/prisma";
-import { carBody, carsCreateBody, carsUpdateBody } from "../interfaces/cars.interfaces";
+import {
+  carBody,
+  carsCreateBody,
+  carsUpdateBody,
+} from "../interfaces/cars.interfaces";
 
 export class CarsServices {
   public create = async (data: carsCreateBody) => {

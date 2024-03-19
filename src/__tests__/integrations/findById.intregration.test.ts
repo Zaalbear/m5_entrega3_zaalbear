@@ -1,19 +1,19 @@
 import { prisma } from "../../database/prisma";
-import { mockCreateCar, mockCreateCarsList } from "../__mocks__/cars.mocks";
+import { createCarMock } from "../__mocks__/cars.mocks";
 import { carDefaultExpect } from "../utils/carsDefaultExpect";
 import { request } from "../utils/request";
 
 describe("Inatragration tests: find many car", () => {
   test("Should be able to get one car successfully", async () => {
-    const car = await prisma.cars.create({ data: mockCreateCar });
-    
+    const car = await prisma.cars.create({ data: createCarMock });
+
     const data = await request
       .get(`/cars/${car.id}`)
       .expect(200)
       .then((response) => response.body);
 
     expect(data.id).toBeDefined();
-    carDefaultExpect(data, mockCreateCar)
+    carDefaultExpect(data, createCarMock);
   });
 
   test("Should throw a error when id is invalid", async () => {
